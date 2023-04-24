@@ -2,7 +2,7 @@ import os
 import subprocess
 
 try:
-    print("Make sure you connected the phone to the PC via USB, enabled USB debugging, and ACCEPTED USB DEBUGGING from this PC.\n")
+    print("Make sure you connected the phone to the PC via USB, enabled USB debugging, and clicked ok in the windows that allows USB debugging from this PC.\n")
 
     while True:
         response = input("Do you wanna uninstall Mi Music? [Y/n] ")
@@ -45,6 +45,18 @@ try:
         if response == '' or response == 'y' or response == 'Y':
             print("Uninstalling Mi Calculator...")
             os.system('adb shell pm uninstall -k --user 0 com.miui.calculator')
+            break
+        elif response == 'n' or response == 'N':
+            print("Skipping...")
+            break
+        else:
+            print("Invalid input")
+            
+    while True:
+        response = input("Do you wanna uninstall Xiaomi Game Center? [Y/n] ")
+        if response == '' or response == 'y' or response == 'Y':
+            print("Uninstalling Xiaomi Game Center...")
+            os.system('adb shell pm uninstall -k --user 0 com.xiaomi.glgm')
             break
         elif response == 'n' or response == 'N':
             print("Skipping...")
