@@ -112,4 +112,4 @@ try:
             print("Invalid input")
 
 except KeyboardInterrupt:
-    quit("\n")
+    sys.exit()
