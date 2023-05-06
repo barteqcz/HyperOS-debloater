@@ -11,23 +11,22 @@ try:
         except FileNotFoundError:
             return False
 
-    def check_adb_devices():
-        result = subprocess.run(['adb', 'devices'], capture_output=True, text=True)
-        output = result.stdout.strip()
-        if 'List of devices attached' in output:
-            return True
-        return False
-
     if not check_adb_exists():
         print("ADB is not installed or not accessible. Please make sure ADB is installed and added to the system's PATH.")
         input("Press Enter to exit...")
         sys.exit()
 
-    if not check_adb_devices():
-        print("No devices found. Please make sure your phone is connected and USB debugging is enabled.")
+    def check_devices_connected():
+        result = subprocess.run(['adb', 'devices'], capture_output=True, text=True)
+        output = result.stdout.strip().split('\n')[1:]
+        devices = [line.split('\t')[0] for line in output if line.strip()]
+        return bool(devices)        
+    
+    if not check_devices_connected():
+        print("No devices found. Please connect a device and try again.")
         input("Press Enter to exit...")
-        sys.exit()
-
+        sys.exit()    
+    
     while True:
         response = input("Do you wanna uninstall Mi Music? [Y/n] ")
         if response == '' or response == 'y' or response == 'Y':
