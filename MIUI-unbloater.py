@@ -122,6 +122,9 @@ try:
             break
         else:
             print("Invalid input")
+            
+    input("Finished! Press Enter to exit...")
+    sys.exit() 
 
 except KeyboardInterrupt:
-    sys.exit()
+sys.exit()
