@@ -12,11 +12,11 @@ try:
     run_in_terminal()
     
     def check_adb_exists():
-        result = subprocess.run(['adb', 'version'], capture_output=True, text=True)
-        output = result.stderr.strip()
-        if 'command not found' in output or 'is not recognized' in output:
+        try:
+            result = subprocess.run(['adb', 'version'], capture_output=True, text=True)
+            return True
+        except FileNotFoundError:
             return False
-        return True
 
     def check_adb_devices():
         result = subprocess.run(['adb', 'devices'], capture_output=True, text=True)
@@ -27,11 +27,13 @@ try:
 
     if not check_adb_exists():
         print("ADB is not installed or not accessible. Please make sure ADB is installed and added to the system's PATH.")
-        quit("\n")
+        input("Press Enter to exit...")
+        sys.exit()
 
     if not check_adb_devices():
         print("No devices found. Please make sure your phone is connected and USB debugging is enabled.")
-        quit("\n")
+        input("Press Enter to exit...")
+        sys.exit()
 
     while True:
         response = input("Do you wanna uninstall Mi Music? [Y/n] ")
