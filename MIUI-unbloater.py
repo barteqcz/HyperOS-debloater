@@ -19,11 +19,11 @@ try:
 
     if not check_adb_exists():
         print("ADB is not installed or not accessible. Please make sure ADB is installed and added to the system's PATH.")
-        quit()
+        quit("\n")
 
     if not check_adb_devices():
         print("No devices found. Please make sure your phone is connected and USB debugging is enabled.")
-        quit()
+        quit("\n")
 
     while True:
         response = input("Do you wanna uninstall Mi Music? [Y/n] ")
