@@ -4,13 +4,6 @@ import sys
 
 try:
     
-    def run_in_terminal():
-        if sys.platform.startswith('linux'):
-            subprocess.Popen(['x-terminal-emulator', '-e', 'python', sys.argv[0]])
-            sys.exit()
-            
-    run_in_terminal()
-    
     def check_adb_exists():
         try:
             result = subprocess.run(['adb', 'version'], capture_output=True, text=True)
