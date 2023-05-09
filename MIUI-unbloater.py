@@ -62,6 +62,18 @@ try:
             break
         else:
             print("Invalid input")
+            
+    while True:
+        response = input("Do you wanna uninstall Mi Gallery? [Y/n] ")
+        if response == '' or response == 'y' or response == 'Y':
+            print("Uninstalling Mi Gallery...")
+            os.system('adb shell pm uninstall -k --user 0 com.miui.gallery')
+            break
+        elif response == 'n' or response == 'N':
+            print("Skipping...")
+            break
+        else:
+            print("Invalid input")
 
     while True:
         response = input("Do you wanna uninstall Mi Calculator? [Y/n] ")
