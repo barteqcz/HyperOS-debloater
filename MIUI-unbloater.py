@@ -100,25 +100,13 @@ try:
             print("Invalid input")
 
     while True:
-        response = input("Do you wanna uninstall MIUI daily wallpaper (not recommended) [y/N] ")
-        if response == '' or response == 'n' or response == 'N':
+        response = input("Do you wanna uninstall Google One app? [Y/n] ")
+        if response == '' or response == 'y' or response == 'Y':
+            print("Uninstalling Google One app...")
+            os.system('adb shell pm uninstall -k --user 0 com.google.android.apps.subscriptions.red')
+            break
+        elif response == 'n' or response == 'N':
             print("Skipping...")
-            break
-        elif response == 'y' or response == 'Y':
-            print("Uninstalling MIUI daily wallpaper...")
-            os.system('adb shell pm uninstall -k --user 0 com.miui.android.fashiongallery')
-            break
-        else:
-            print("Invalid input")
-
-    while True:
-        response = input("Do you wanna uninstall MIUI Cleaner (not recommended) [y/N] ")
-        if response == '' or response == 'n' or response == 'N':
-            print("Skipping...")
-            break
-        elif response == 'y' or response == 'Y':
-            print("Uninstalling MIUI daily wallpaper...")
-            os.system('adb shell pm uninstall -k --user 0 com.miui.android.fashiongallery')
             break
         else:
             print("Invalid input")
