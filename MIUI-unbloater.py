@@ -76,6 +76,18 @@ try:
             print("Invalid input")
 
     while True:
+        response = input("Do you wanna uninstall Mi Browser? [Y/n] ")
+        if response == '' or response == 'y' or response == 'Y':
+            print("Uninstalling Mi Browser...")
+            os.system('adb shell pm uninstall -k --user 0 com.mi.globalbrowser')
+            break
+        elif response == 'n' or response == 'N':
+            print("Skipping...")
+            break
+        else:
+            print("Invalid input")
+
+    while True:
         response = input("Do you wanna uninstall Xiaomi Game Center? [Y/n] ")
         if response == '' or response == 'y' or response == 'Y':
             print("Uninstalling Xiaomi Game Center...")
