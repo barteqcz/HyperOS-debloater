@@ -1,130 +1,60 @@
-import os
-import subprocess
-import sys
+from subprocess import run
+from sys import exit
+
+package_names = {
+    "com.miui.player": "Mi Music",
+    "com.miui.videoplayer": "Mi Video",
+    "com.mi.android.globalFileexplorer": "Mi File Explorer",
+    "com.mi.globalbrowser": "Mi Browser",
+    "com.miui.calculator": "MIUI Calculator",
+    "com.xiaomi.glgm": "Xiaomi Game Center",
+    "com.xiaomi.midrop": "Xiaomi ShareMe",
+    "com.google.android.apps.subscriptions.red": "Google One app",
+}
+
+def check_adb_exists():
+    try:
+        result = run(['adb', 'version'], capture_output=True, text=True)
+        return True
+    except FileNotFoundError:
+        return False
+
+def check_devices_connected():
+    result = run(['adb', 'devices'], capture_output=True, text=True)
+    output = result.stdout.strip().split('\n')[1:]
+    devices = [line.split('\t')[0] for line in output if line.strip()]
+    return bool(devices)
+
+def uninstall_app(package_id):
+    package_name = package_names.get(package_id, package_id)
+    while True:
+        response = input(f"Do you wanna uninstall {package_name}? [Y/n] ")
+        if response == '' or response.lower() == 'y':
+            print(f"Uninstalling {package_name}...")
+            run(['adb', 'shell', 'pm', 'uninstall', '-k', '--user', '0', package_id])
+            break
+        elif response.lower() == 'n':
+            print("Skipping...")
+            break
+        else:
+            print("Invalid input")
 
 try:
-
-    def check_adb_exists():
-        try:
-            result = subprocess.run(['adb', 'version'], capture_output=True, text=True)
-            return True
-        except FileNotFoundError:
-            return False
-
     if not check_adb_exists():
         print("ADB is not installed or not accessible. Please make sure ADB is installed and added to the system's PATH.")
         input("Press Enter to exit...")
-        sys.exit()
-
-    def check_devices_connected():
-        result = subprocess.run(['adb', 'devices'], capture_output=True, text=True)
-        output = result.stdout.strip().split('\n')[1:]
-        devices = [line.split('\t')[0] for line in output if line.strip()]
-        return bool(devices)
+        exit()
 
     if not check_devices_connected():
         print("No devices found. Please connect a device and/or accept USB debugging, and try again.")
         input("Press Enter to exit...")
-        sys.exit()    
+        exit()    
 
-    while True:
-        response = input("Do you wanna uninstall Mi Music? [Y/n] ")
-        if response == '' or response == 'y' or response == 'Y':
-            print("Uninstalling Mi Music...")
-            os.system('adb shell pm uninstall -k --user 0 com.miui.player')
-            break
-        elif response == 'n' or response == 'N':
-            print("Skipping...")
-            break
-        else:
-            print("Invalid input")
+    for package_id in package_names:
+        uninstall_app(package_id)
 
-    while True:
-        response = input("Do you wanna uninstall Mi Video? [Y/n] ")
-        if response == '' or response == 'y' or response == 'Y':
-            print("Uninstalling Mi Music...")
-            os.system('adb shell pm uninstall -k --user 0 com.miui.videoplayer')
-            break
-        elif response == 'n' or response == 'N':
-            print("Skipping...")
-            break
-        else:
-            print("Invalid input")
-
-    while True:
-        response = input("Do you wanna uninstall Mi File Manager? [Y/n] ")
-        if response == '' or response == 'y' or response == 'Y':
-            print("Uninstalling Mi File Manager...")
-            os.system('adb shell pm uninstall -k --user 0 com.mi.android.globalFileexplorer')
-            break
-        elif response == 'n' or response == 'N':
-            print("Skipping...")
-            break
-        else:
-            print("Invalid input")
-
-    while True:
-        response = input("Do you wanna uninstall Mi Calculator? [Y/n] ")
-        if response == '' or response == 'y' or response == 'Y':
-            print("Uninstalling Mi Calculator...")
-            os.system('adb shell pm uninstall -k --user 0 com.miui.calculator')
-            break
-        elif response == 'n' or response == 'N':
-            print("Skipping...")
-            break
-        else:
-            print("Invalid input")
-
-    while True:
-        response = input("Do you wanna uninstall Mi Browser? [Y/n] ")
-        if response == '' or response == 'y' or response == 'Y':
-            print("Uninstalling Mi Browser...")
-            os.system('adb shell pm uninstall -k --user 0 com.mi.globalbrowser')
-            break
-        elif response == 'n' or response == 'N':
-            print("Skipping...")
-            break
-        else:
-            print("Invalid input")
-
-    while True:
-        response = input("Do you wanna uninstall Xiaomi Game Center? [Y/n] ")
-        if response == '' or response == 'y' or response == 'Y':
-            print("Uninstalling Xiaomi Game Center...")
-            os.system('adb shell pm uninstall -k --user 0 com.xiaomi.glgm')
-            break
-        elif response == 'n' or response == 'N':
-            print("Skipping...")
-            break
-        else:
-            print("Invalid input")
-
-    while True:
-        response = input("Do you wanna uninstall Xiaomi ShareMe? [Y/n] ")
-        if response == '' or response == 'y' or response == 'Y':
-            print("Uninstalling Xiaomi Game Center...")
-            os.system('adb shell pm uninstall -k --user 0 com.xiaomi.midrop')
-            break
-        elif response == 'n' or response == 'N':
-            print("Skipping...")
-            break
-        else:
-            print("Invalid input")
-
-    while True:
-        response = input("Do you wanna uninstall Google One app? [Y/n] ")
-        if response == '' or response == 'y' or response == 'Y':
-            print("Uninstalling Google One app...")
-            os.system('adb shell pm uninstall -k --user 0 com.google.android.apps.subscriptions.red')
-            break
-        elif response == 'n' or response == 'N':
-            print("Skipping...")
-            break
-        else:
-            print("Invalid input")
-            
     input("Finished! Press Enter to exit...")
-    sys.exit() 
+    exit()
 
 except KeyboardInterrupt:
-    sys.exit()
+    exit()
