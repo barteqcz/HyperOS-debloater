@@ -6,6 +6,7 @@ package_names = {
     "com.miui.videoplayer": "Mi Video",
     "com.mi.android.globalFileexplorer": "Mi File Explorer",
     "com.mi.globalbrowser": "Mi Browser",
+    "com.mi.global.shop": "Mi Store",
     "com.miui.calculator": "MIUI Calculator",
     "com.xiaomi.glgm": "Xiaomi Game Center",
     "com.xiaomi.midrop": "Xiaomi ShareMe",
