@@ -53,7 +53,6 @@ try:
         exit()    
 
     for package_id in package_names:
-        print("Before uninstalling any app, it is recommended to do backup of the .apk file, just in case you'd like to reinstall that app in the future.")
         uninstall_app(package_id)
 
     input("Finished! Press Enter to exit...")
