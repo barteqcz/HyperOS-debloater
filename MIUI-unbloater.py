@@ -4,12 +4,13 @@ from sys import exit
 package_names = {
     "com.miui.player": "Mi Music",
     "com.miui.videoplayer": "Mi Video",
-    "com.mi.android.globalFileexplorer": "Mi File Explorer",
     "com.mi.globalbrowser": "Mi Browser",
     "com.mi.global.shop": "Mi Store",
-    "com.miui.calculator": "MIUI Calculator",
+    "com.mi.android.globalFileexplorer": "Mi File Explorer",
+    "cn.wps.xiaomi.abroad.lite": "Mi Documents Viewer (powered by WPS)",
     "com.xiaomi.glgm": "Xiaomi Game Center",
     "com.xiaomi.midrop": "Xiaomi ShareMe",
+    "com.xiaomi.scanner": "Xiaomi QR Scanner",
     "com.google.android.apps.subscriptions.red": "Google One app",
 }
 
@@ -52,6 +53,7 @@ try:
         exit()    
 
     for package_id in package_names:
+        print("Before uninstalling any app, it is recommended to do backup of the .apk file, just in case you'd like to reinstall that app in the future.")
         uninstall_app(package_id)
 
     input("Finished! Press Enter to exit...")
