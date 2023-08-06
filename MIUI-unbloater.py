@@ -26,23 +26,7 @@ def check_devices_connected():
     result = run(['adb', 'devices'], capture_output=True, text=True)
     output = result.stdout.strip().split('\n')[1:]
     devices = [line.split('\t')[0] for line in output if line.strip()]
-    if not devices:
-        print("No devices found. Please connect a device, accept USB debugging and try again.")
-        return False, False
-
-    authorized_devices = [line.split('\t')[0] for line in output if line.strip() and "device" in line]
-    if not authorized_devices:
-        print("Please authorize the connection by clicking OK on the phone screen. If a pop-up doesn't appear, reboot your PC or make sure that USB debugging is enabled.")
-        input_thread = threading.Thread(target=input, args=("Press Enter to continue after authorizing the device...",))
-        input_thread.start()
-        time.sleep(10)  # Wait for 10 seconds for user input
-        if input_thread.is_alive():
-            print("Continuing automatically after timeout.")
-            return True, False
-        input_thread.join()
-        return True, True
-
-    return True, True
+    return bool(devices)
 
 def uninstall_app(package_id):
     package_name = package_names.get(package_id, package_id)
