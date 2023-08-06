@@ -26,17 +26,14 @@ def check_devices_connected():
     result = run(['adb', 'devices'], capture_output=True, text=True)
     output = result.stdout.strip().split('\n')[1:]
     devices = [line.split('\t')[0] for line in output if line.strip()]
-    
     if not devices:
-        print("No devices found. Please connect a device and/or accept USB debugging, and try again.")
+        print("No devices found. Please connect a device, accept USB debugging and try again.")
         return False
-
-    for device in devices:
-        result = run(['adb', '-s', device, 'shell', 'echo', 'connected'], capture_output=True, text=True)
-        if result.stdout.strip() != 'connected':
-            print(f"Please authorize the connection for device {device} and try again.")
-            return False
-
+    authorized_devices = [line.split('\t')[0] for line in output if line.strip() and "device" in line]
+    if not authorized_devices:
+        print("Please authorize the connection by clicking OK on the phone screen. If a pop-up doesn't appear, reboot your PC or make sure that USB debugging is enabled.")
+        input("Press Enter to continue after authorizing the device...")
+        return False
     return True
 
 def uninstall_app(package_id):
@@ -60,8 +57,9 @@ try:
         exit()
 
     if not check_devices_connected():
+        print("No devices found. Please connect a device and/or accept USB debugging, and try again.")
         input("Press Enter to exit...")
-        exit()
+        exit()    
 
     for package_id in package_names:
         uninstall_app(package_id)
