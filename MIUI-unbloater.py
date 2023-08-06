@@ -53,7 +53,7 @@ try:
         exit()
 
     if not check_devices_connected():
-        print("No devices found. Please connect a device and/or accept USB debugging, and try again.")
+        print("No devices found. Please connect a device and try again.")
         input("Press Enter to exit...")
         exit()    
 
