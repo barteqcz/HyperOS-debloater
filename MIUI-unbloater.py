@@ -26,6 +26,10 @@ def check_devices_connected():
     result = run(['adb', 'devices'], capture_output=True, text=True)
     output = result.stdout.strip().split('\n')[1:]
     devices = [line.split('\t')[0] for line in output if line.strip()]
+    
+    if 'unauthorized' in result.stdout.lower():
+        print("Connected device is not authorized. Please accept the USB debugging authorization on the device.")
+    
     return bool(devices)
 
 def uninstall_app(package_id):
