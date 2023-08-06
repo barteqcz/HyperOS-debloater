@@ -31,7 +31,7 @@ def check_devices_connected():
     devices = [line.split('\t')[0] for line in output if line.strip()]
     
     if 'unauthorized' in result.stdout.lower():
-        print("Connected device is not authorized. Please accept the USB debugging authorization on the device.")
+        print("Connected device is not authorized. Please accept the USB debugging authorization on the device.\n")
     
     return bool(devices)
 
