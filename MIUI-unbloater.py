@@ -6,7 +6,6 @@ package_names = {
     "com.miui.videoplayer": "Mi Video",
     "com.mi.globalbrowser": "Mi Browser",
     "com.mi.global.shop": "Mi Store",
-    "com.mi.android.globalFileexplorer": "Mi File Explorer",
     "cn.wps.xiaomi.abroad.lite": "Mi Documents Viewer (powered by WPS)",
     "com.miui.compass": "MIUI Compass",
     "com.miui.calculator": "MIUI Calculator",
