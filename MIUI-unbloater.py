@@ -7,7 +7,7 @@ package_names = {
     "com.mi.globalbrowser": "Mi Browser",
     "com.mi.global.shop": "Mi Store",
     "cn.wps.xiaomi.abroad.lite": "Mi Documents Viewer (powered by WPS)",
-    "com.android.fashiongallery": "Wallpaper Carousel",
+    "com.miui.android.fashiongallery": "Wallpaper Carousel",
     "com.xiaomi.glgm": "Xiaomi Game Center",
     "com.xiaomi.midrop": "Xiaomi ShareMe",
     "com.xiaomi.scanner": "Xiaomi QR Scanner",
