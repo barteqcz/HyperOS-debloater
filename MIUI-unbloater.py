@@ -41,7 +41,7 @@ def uninstall_app(package_id):
         response = input(f"Do you wanna uninstall {package_name}? [Y/n] ")
         if response == '' or response.lower() == 'y':
             print(f"Uninstalling {package_name}...")
-            run(['adb', 'shell', 'pm', 'uninstall', '-k', '--user', '0', package_id])
+            run(['adb', 'shell', 'pm', 'uninstall', '--user', '0', package_id])
             break
         elif response.lower() == 'n':
             print("Skipping...")
