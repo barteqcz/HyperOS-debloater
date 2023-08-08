@@ -3,6 +3,9 @@
 ### About
 This is a simple script, written in Python, which is supposed to safely remove bloatware from Xiaomi MIUI ROM using `adb`.
 
+### Important notice
+I do not assume responsibility for any side effects resulting from the app. While it is designed to perform all functions safely and enables the removal of only a minimal portion of packages generally recognized as safe to delete, I cannot guarantee how a device will respond.
+
 ### Microsoft Defender finding threats in the app
 Microsoft Defender and a few other antivirus programs might mistakenly identify this app as a virus. It's important to note that this app is not a virus and you can look up the whole code in this repo. The potential cause for this false detection could be related to the app's use of ADB (Android Debug Bridge).
 
