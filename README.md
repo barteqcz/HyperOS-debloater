@@ -1,4 +1,4 @@
-# MIUI-unbloater
+# MIUI-debloater
 
 ### About
 This is a simple script, written in Python, which is supposed to safely remove bloatware from Xiaomi MIUI ROM using `adb`.
